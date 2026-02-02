@@ -1,13 +1,13 @@
 name: Project18 GitOps Infra Deployment
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
 
 jobs:
-  terraform:
+  run_on_merge:
     name: Terraorm apply
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: test
 
